@@ -49,7 +49,7 @@ def preprocess_data(df):
     return df
 
 # 3. Save Preprocessed Data
-def save_data(df, output_dir="hotelbookingdemand_preprocessing"):
+def save_data(df, output_dir="preprocessing/hotelbookingdemand_preprocessing"):
     os.makedirs(output_dir, exist_ok=True)
     output_path = os.path.join(output_dir, "hotel_bookings_clean.csv")
     df.to_csv(output_path, index=False)
