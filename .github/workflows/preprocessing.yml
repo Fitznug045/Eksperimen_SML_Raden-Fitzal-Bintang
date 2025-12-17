@@ -1,0 +1,33 @@
+name: Automated Preprocessing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  preprocessing:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install pandas numpy scikit-learn kagglehub
+
+      - name: Run preprocessing script
+        run: |
+          python preprocessing/automate_Raden_Fitzal_Bintang.py
+
+      - name: Upload preprocessing artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hotel-bookings-preprocessed
+          path: preprocessing/hotelbookingdemand_preprocessing/hotel_bookings_clean.csv
